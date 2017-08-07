@@ -1,9 +1,7 @@
-
-<h1>Show Restaurant {{restaurantId}} details here</h1>
 <div class="restaurant" ng-if="restaurant.name">
     <div class="rest-wrapper">
         <div class="image">
-            <img width="100" height="100" src="{{restaurant.image}}">
+            <img width="100" height="100" ng-src="{{restaurant.image}}">
         </div>
         <div class="rest-info">
             <div class="rest-category">
@@ -25,14 +23,29 @@
             <div><small>Cuisines:</small></div>
             <div><small>Cost for Two: </small></div>
             <div><small>Hours:</small></div>
+            <div ng-if="restaurant.bestDish"><small>Recommended: </small></div>
         </div>
         <div class="value">
             <div>{{restaurant.cuisines}}</div>
             <div>₹{{restaurant.cost | number}}</div>
             <div>{{restaurant.hours}}</div>
+            <div class="bestDish" ng-if="restaurant.bestDish">
+    	        <span>{{restaurant.bestDish.name}} </span>
+    	        <div class="button" ng-click="getIngredients(restaurant.bestDish.image)">Get Ingredients</div>
+    		</div>
         </div>
     </div>
     <div class="rating">
         <strong>{{restaurant.vote}}</strong>
     </div>
+    <div ng-if="ingredients">
+                  <ol>
+                  <li class="Ilist" ng-repeat="ingredient in ingredients">
+                  {{ingredient}}
+                  </li>
+                  </ol>
+          </div>
+          <div class="image">
+              <img ng-src="{{restaurant.bestDish.image}}" height="300" width="550">
+          </div>
 </div>
